@@ -4,7 +4,7 @@ import pandas as pd
 import seaborn as sns
 
 # Get the data (csv file is hosted on the web)
-url = 'https://python-graph-gallery.com/wp-content/uploads/volcano.csv'
+url = 'temp.py'
 data = pd.read_csv(url)
 
 # y - ilosc wierszy - longitude
