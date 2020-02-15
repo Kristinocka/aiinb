@@ -1,6 +1,7 @@
 import random
 import numpy as np
 from tempfile import TemporaryFile
+import pandas as pd
 
 def safe_get(l, idx_x, idx_y, default=0):
     """
@@ -45,7 +46,7 @@ def generate(width, length, max_height, min_height, sea2land, max_height_delta):
         
     return our_map
 
-def save_npz(data, path):
+def save_csv(data, path):
     data = np.array(ooo)
 
     xs = []
@@ -57,8 +58,10 @@ def save_npz(data, path):
             ys.append(y)
             zs.append(data[x][y])
 
-#     outfile = TemporaryFile()
-    np.savez(path, topo=np.array(zs), longitude=ys, latitude=xs)
-
+    df = pd.DataFrame()
+    df["X"] = xs
+    df["Y"] = ys
+    df["Z"] = zs
+    df.save_csv(path)
 raw = generate(20,20,20,-10,0.5,2)
-save_npz(raw, "temp.npz")
+save_npz(raw, "temp.csv")
